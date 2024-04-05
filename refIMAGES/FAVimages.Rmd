@@ -1,0 +1,199 @@
+---
+title: "Reference Image Export"
+output: html_notebook
+---
+
+
+```{r}
+
+require(readr)
+require(fs)
+require(dplyr)
+
+```
+
+## Full Export - Subset for Reference = True + By Region
+```{r}
+
+Nref = read.csv('https://github.com/rytomey/msRRV/raw/main/refIMAGES/refRSA.csv')
+Cref = read.csv('https://github.com/rytomey/msRRV/raw/main/refIMAGES/refAWMA.csv')
+Sref = read.csv('https://github.com/rytomey/msRRV/raw/main/refIMAGES/refBC.csv')
+
+```
+
+# REDSTONE 
+
+### Columns used to Pull Images
+```{r}
+
+photo_paths =  Nref$Absolute.Path
+to_download =  Nref$Reference
+species     =  Nref$Species
+behavior    =  Nref$Behavior
+
+```
+
+
+### Folder + Loop Behavior Picture Pull
+```{r}
+
+local_folder = "C:/Users/rylee/OneDrive - Auburn University/FAVimages/Nbehavior"
+
+for (i in 1:length(photo_paths)) {
+  if (to_download[i]) {
+    file_name = basename(photo_paths[i])
+    behavior_folder_name = paste0(behavior[i], "_photos")
+    behavior_folder = file.path(local_folder, behavior_folder_name)
+    
+    # Create species folder if it doesn't exist
+    dir_create(behavior_folder, recurse = TRUE)
+    
+    # Copy the photo to the species folder
+    file_copy(photo_paths[i], file.path(behavior_folder, file_name), overwrite = TRUE)
+  }
+}
+
+
+```
+
+### Folder + Loop Species Picture Pull
+```{r}
+
+local_folder = "C:/Users/rylee/OneDrive - Auburn University/FAVimages/Nspecies"
+
+for (i in 1:length(photo_paths)) {
+  if (to_download[i]) {
+    file_name = basename(photo_paths[i])
+    species_folder_name = paste0(species[i], "_photos")
+    species_folder = file.path(local_folder, species_folder_name)
+    
+    # Create species folder if it doesn't exist
+    dir_create(species_folder, recurse = TRUE)
+    
+    # Copy the photo to the species folder
+    file_copy(photo_paths[i], file.path(species_folder, file_name), overwrite = TRUE)
+  }
+}
+
+
+```
+
+
+# AUTAUGA
+
+### Columns used to Pull Images
+```{r}
+
+photo_paths =  Cref$Absolute.Path
+to_download =  Cref$Reference
+species     =  Cref$Species
+behavior    =  Cref$Behavior
+
+```
+
+
+### Folder + Loop Behavior Picture Pull
+```{r}
+
+local_folder = "C:/Users/rylee/OneDrive - Auburn University/FAVimages/Cbehavior"
+
+for (i in 1:length(photo_paths)) {
+  if (to_download[i]) {
+    file_name = basename(photo_paths[i])
+    behavior_folder_name = paste0(behavior[i], "_photos")
+    behavior_folder = file.path(local_folder, behavior_folder_name)
+    
+    # Create species folder if it doesn't exist
+    dir_create(behavior_folder, recurse = TRUE)
+    
+    # Copy the photo to the species folder
+    file_copy(photo_paths[i], file.path(behavior_folder, file_name), overwrite = TRUE)
+  }
+}
+
+
+```
+
+### Folder + Loop Species Picture Pull
+```{r}
+
+local_folder = "C:/Users/rylee/OneDrive - Auburn University/FAVimages/Cspecies"
+
+for (i in 1:length(photo_paths)) {
+  if (to_download[i]) {
+    file_name = basename(photo_paths[i])
+    species_folder_name = paste0(species[i], "_photos")
+    species_folder = file.path(local_folder, species_folder_name)
+    
+    # Create species folder if it doesn't exist
+    dir_create(species_folder, recurse = TRUE)
+    
+    # Copy the photo to the species folder
+    file_copy(photo_paths[i], file.path(species_folder, file_name), overwrite = TRUE)
+  }
+}
+
+
+```
+
+
+
+
+
+# BALDWIN
+
+### Columns used to Pull Images
+```{r}
+
+photo_paths =  Sref$Absolute.Path
+to_download =  Sref$Reference
+species     =  Sref$Species
+behavior    =  Sref$Behavior
+
+```
+
+
+### Folder + Loop Behavior Picture Pull
+```{r}
+
+local_folder = "C:/Users/rylee/OneDrive - Auburn University/FAVimages/Sbehavior"
+
+for (i in 1:length(photo_paths)) {
+  if (to_download[i]) {
+    file_name = basename(photo_paths[i])
+    behavior_folder_name = paste0(behavior[i], "_photos")
+    behavior_folder = file.path(local_folder, behavior_folder_name)
+    
+    # Create species folder if it doesn't exist
+    dir_create(behavior_folder, recurse = TRUE)
+    
+    # Copy the photo to the species folder
+    file_copy(photo_paths[i], file.path(behavior_folder, file_name), overwrite = TRUE)
+  }
+}
+
+
+```
+
+### Folder + Loop Species Picture Pull
+```{r}
+
+local_folder = "C:/Users/rylee/OneDrive - Auburn University/FAVimages/Sspecies"
+
+for (i in 1:length(photo_paths)) {
+  if (to_download[i]) {
+    file_name = basename(photo_paths[i])
+    species_folder_name = paste0(species[i], "_photos")
+    species_folder = file.path(local_folder, species_folder_name)
+    
+    # Create species folder if it doesn't exist
+    dir_create(species_folder, recurse = TRUE)
+    
+    # Copy the photo to the species folder
+    file_copy(photo_paths[i], file.path(species_folder, file_name), overwrite = TRUE)
+  }
+}
+
+
+```
+
